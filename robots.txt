@@ -1,2 +1,2 @@
 User-agent: *
-Sitemap: http://sanjayts.netsitemap.xml
+Sitemap: http://sanjayts.net/sitemap.xml
