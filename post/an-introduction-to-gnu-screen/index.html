@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>An Introduction To GNU Screen - Ramblings</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Sanjay" />
+  <meta name="description" content="I personally believe that using a terminal multiplexer is a must for anyone who spends a non-trivial amount working on remote *nix servers. This post is a gentle introduction to GNU screen but I would like to take a short detour and explain why they are useful.
+Why use a terminal multiplexer? Some of the most obvious advantages being:
+ Ability to have a saved session for your work Cutting down the number of terminal windows you have to open  Let&amp;rsquo;s discuss a usecase wherein you are logged on to your Edge/Gateway node and would like to monitor your Spark jobs, your HBase service and at the same time query Impala tables." />
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.26" />
+
+
+<link rel="canonical" href="http://sanjayts.net/post/an-introduction-to-gnu-screen/" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" href="/favicon.ico" />
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="/dist/even.min.css?v=2.5.0" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+<meta property="og:title" content="An Introduction To GNU Screen" />
+<meta property="og:description" content="I personally believe that using a terminal multiplexer is a must for anyone who spends a non-trivial amount working on remote *nix servers. This post is a gentle introduction to GNU screen but I would like to take a short detour and explain why they are useful.
+Why use a terminal multiplexer? Some of the most obvious advantages being:
+ Ability to have a saved session for your work Cutting down the number of terminal windows you have to open  Let&rsquo;s discuss a usecase wherein you are logged on to your Edge/Gateway node and would like to monitor your Spark jobs, your HBase service and at the same time query Impala tables." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://sanjayts.net/post/an-introduction-to-gnu-screen/" />
+
+
+
+<meta property="article:published_time" content="2017-09-22T12:00:00&#43;06:00"/>
+<meta property="article:modified_time" content="2017-09-22T12:00:00&#43;06:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="An Introduction To GNU Screen">
+<meta itemprop="description" content="I personally believe that using a terminal multiplexer is a must for anyone who spends a non-trivial amount working on remote *nix servers. This post is a gentle introduction to GNU screen but I would like to take a short detour and explain why they are useful.
+Why use a terminal multiplexer? Some of the most obvious advantages being:
+ Ability to have a saved session for your work Cutting down the number of terminal windows you have to open  Let&rsquo;s discuss a usecase wherein you are logged on to your Edge/Gateway node and would like to monitor your Spark jobs, your HBase service and at the same time query Impala tables.">
+
+
+<meta itemprop="dateModified" content="2017-09-22T12:00:00&#43;06:00" />
+<meta itemprop="wordCount" content="627">
+
+
+
+<meta itemprop="keywords" content="linux,screen," />
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="An Introduction To GNU Screen"/>
+<meta name="twitter:description" content="I personally believe that using a terminal multiplexer is a must for anyone who spends a non-trivial amount working on remote *nix servers. This post is a gentle introduction to GNU screen but I would like to take a short detour and explain why they are useful.
+Why use a terminal multiplexer? Some of the most obvious advantages being:
+ Ability to have a saved session for your work Cutting down the number of terminal windows you have to open  Let&rsquo;s discuss a usecase wherein you are logged on to your Edge/Gateway node and would like to monitor your Spark jobs, your HBase service and at the same time query Impala tables."/>
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Ramblings</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/post/">
+        <li class="mobile-menu-item">Blog</li>
+      </a><a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Ramblings</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/post/">Blog</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">An Introduction To GNU Screen</h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-09-22
+        </span>
+        <div class="post-category">
+            <a href="/categories/programming/">programming</a>
+          </div>
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content">
+      <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#why-use-a-terminal-multiplexer">Why use a terminal multiplexer?</a></li>
+<li><a href="#tmux-and-screen">tmux and screen</a></li>
+<li><a href="#basic-screen-commands">Basic screen commands</a></li>
+<li><a href="#recommended-reading">Recommended Reading</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      
+
+<hr />
+
+<p>I personally believe that using a <a href="https://en.wikipedia.org/wiki/Terminal_multiplexer">terminal multiplexer</a> is a must for anyone who spends a non-trivial amount working on remote *nix servers. This post is a gentle introduction to <a href="https://en.wikipedia.org/wiki/GNU_Screen">GNU screen</a> but I would like to take a short detour and explain why they are useful.</p>
+
+<h3 id="why-use-a-terminal-multiplexer">Why use a terminal multiplexer?</h3>
+
+<p>Some of the most obvious advantages being:</p>
+
+<ol>
+<li>Ability to have a saved <em>session</em> for your work</li>
+<li>Cutting down the number of terminal windows you have to open</li>
+</ol>
+
+<p>Let&rsquo;s discuss a usecase wherein you are logged on to your <a href="https://www.cloudera.com/documentation/enterprise/latest/topics/cdh_sg_gateway_setup.html">Edge/Gateway node</a> and would like to monitor your <a href="https://spark.apache.org/">Spark</a> jobs, your <a href="https://en.wikipedia.org/wiki/Apache_HBase">HBase</a> service and at the same time query <a href="https://en.wikipedia.org/wiki/Apache_Impala">Impala</a> tables. A common solution would be one of:</p>
+
+<ol>
+<li>Use a <a href="https://en.wikipedia.org/wiki/Terminal_emulator">terminal emulator</a> like Putty to log on to the edge node and use Spark/Hbase/Impala by switching directories and managing background processes OR</li>
+<li>Open three <a href="https://en.wikipedia.org/wiki/PuTTY">Putty</a> windows and manage one service per window</li>
+</ol>
+
+<p>This kind-of works but has a few problems:</p>
+
+<ol>
+<li>If you now want to log on to multiple servers, it greatly increases the number of windows you have to have open</li>
+<li>In case you lose connection, you are back to square one since you have lost <em>all</em> your sessions you were working on</li>
+</ol>
+
+<p>Enter terminal multiplexers like screen and <a href="https://en.wikipedia.org/wiki/Tmux">tmux</a>: they allow you to manage multiple &ldquo;virtual&rdquo; windows within the same terminal emulator application and at the same time provide a mechanism to &ldquo;save&rdquo; your session. These sessions stick around till the server is restarted (which happens rarely).</p>
+
+<h3 id="tmux-and-screen">tmux and screen</h3>
+
+<p><code>tmux</code> and <code>screen</code> are the most widely used terminal multiplexers. I&rsquo;m a big fan of tmux but it is almost never installed by default on the &ldquo;enterprise grade linux installations&rdquo; (RHEL) and it&rsquo;s a pain to get additional software installed. I feel that screen is &ldquo;good enough&rdquo; for what it does and has the added advantage of being installed by default so I&rsquo;ll be discussing screen in this post.</p>
+
+<h3 id="basic-screen-commands">Basic screen commands</h3>
+
+<p>Below is my version of the very basic set of commands required to get started with <code>screen</code> and the ones which I most frequently use. The convention followed is <code>C-a</code> which means <code>CTRL</code> (<code>Command</code>) key followed by the character <code>a</code>.</p>
+
+<ul>
+<li>Fire up console and type the command <code>screen -U -S session_name</code>. This will create a new screen session which supports <code>utf8</code> and has a name <code>session_name</code>.</li>
+<li>Use <code>C-a c</code> to create a screen window</li>
+<li>Use <code>C-a k</code> to kill the screen window</li>
+<li>Use <code>C-a A</code> to rename a screen window to something logical. A title &ldquo;spark monitoring&rdquo; makes more sense than the default title &ldquo;bash&rdquo;!</li>
+<li>Use <code>C-a d</code> to detach the screen session in case are about to restart your local box. The good news is that when you lose network connection, screen automatically &ldquo;detaches&rdquo; your session; neat!</li>
+<li>Use <code>C-a &quot;</code> (that&rsquo;s a double quote) to list all the sessions in an interactive way which can be selected using <code>vi</code> keybindings</li>
+<li>Use <code>C-a num</code> to jump to the numbered session. For example, let&rsquo;s say you want to jump to jump to the second screen window, you will press <code>C-a 1</code></li>
+<li>Given that screen windows are different from your terimanal emulator windows (with its own buffer), use <code>C-a ESC</code> key sequence to drop in the &ldquo;copy mode&rdquo; wherein you can move around freely using <code>vi</code> key bindings</li>
+<li>To list all the active <code>screen</code> sessions, use <code>screen -ls</code>. To attach to the first session, use <code>screen -R</code>. To attach to a named session (as retrieved from the <code>screen -ls</code> command) type <code>screen -r session_name</code>.</li>
+<li>If you want to kill a screen session, use <code>screen -S session_id_or_name -X quit</code> where <code>session_id_or_name</code> is the one which you get from <code>screen -ls</code>.</li>
+</ul>
+
+<h3 id="recommended-reading">Recommended Reading</h3>
+
+<ul>
+<li><a href="http://www.rackaid.com/resources/linux-screen-tutorial-and-how-to/">How to Use Linux Screen</a></li>
+<li><a href="http://aperiodic.net/screen/quick_reference">GNU Screen quick reference</a></li>
+<li><a href="http://www.bangmoney.org/presentations/screen.html">screen - The Terminal Multiplexer</a></li>
+</ul>
+
+    </div>
+
+    
+    
+<div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Sanjay: </span>
+    <span>Sanjay</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod: </span>
+    2017-09-22
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">Link: </span>
+    <a href="http://sanjayts.net/post/an-introduction-to-gnu-screen/">http://sanjayts.net/post/an-introduction-to-gnu-screen/</a>
+  </p>
+  
+  <p class="copyright-item license">
+    <span class="item-title">License: </span>
+    <a rel="license" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>
+  </p>
+</div>
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          
+          <a href="/tags/linux/">linux</a>
+          
+          <a href="/tags/screen/">screen</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+        
+          <a class="next" href="/post/the-negative-lookbehind-trap/">
+            <span class="next-text nav-default">The Negative look-behind trap -- regex</span>
+            <span class="prev-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    (function() {
+        
+        
+        if (window.location.hostname === 'localhost') return;
+
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        var disqus_shortname = 'https-sanjayts-net';
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com/" class="dsq-brlink" target="_blank">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+  
+      </div>  
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+        <a href="mailto:me%20[at]%20sanjayts%20[dot]%20net" class="iconfont icon-email" title="email"></a>
+        <a href="https://stackoverflow.com/users/193906/sanjay-t-sharma" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+        <a href="https://twitter.com/sanjay_ts" class="iconfont icon-twitter" title="twitter"></a>
+        <a href="https://github.com/sanjayts" class="iconfont icon-github" title="github"></a>
+  <a href="http://sanjayts.net/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy; 
+    
+       - 
+    2017
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Sanjay</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+<script src="/lib/highlight/highlight.pack.js"></script>
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+<script type="text/javascript" src="/dist/even.min.js?v=2.5.0"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script async src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+
+
+
+
+</body>
+</html>

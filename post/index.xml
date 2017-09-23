@@ -5,10 +5,21 @@
     <link>http://sanjayts.net/post/</link>
     <description>Recent content in Blog on Ramblings</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 02 Sep 2017 12:00:00 +0600</lastBuildDate>
+    <lastBuildDate>Fri, 22 Sep 2017 12:00:00 +0600</lastBuildDate>
     
 	<atom:link href="http://sanjayts.net/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>An Introduction To GNU Screen</title>
+      <link>http://sanjayts.net/post/an-introduction-to-gnu-screen/</link>
+      <pubDate>Fri, 22 Sep 2017 12:00:00 +0600</pubDate>
+      
+      <guid>http://sanjayts.net/post/an-introduction-to-gnu-screen/</guid>
+      <description>I personally believe that using a terminal multiplexer is a must for anyone who spends a non-trivial amount working on remote *nix servers. This post is a gentle introduction to GNU screen but I would like to take a short detour and explain why they are useful.
+Why use a terminal multiplexer? Some of the most obvious advantages being:
+ Ability to have a saved session for your work Cutting down the number of terminal windows you have to open  Let&amp;rsquo;s discuss a usecase wherein you are logged on to your Edge/Gateway node and would like to monitor your Spark jobs, your HBase service and at the same time query Impala tables.</description>
+    </item>
     
     <item>
       <title>The Negative look-behind trap -- regex</title>

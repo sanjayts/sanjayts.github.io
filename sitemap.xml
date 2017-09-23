@@ -4,13 +4,20 @@
   
   <url>
     <loc>http://sanjayts.net/post/</loc>
-    <lastmod>2017-09-02T22:00:00+06:00</lastmod>
+    <lastmod>2017-09-22T12:00:00+06:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>http://sanjayts.net/about/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://sanjayts.net/post/an-introduction-to-gnu-screen/</loc>
+    <lastmod>2017-09-22T12:00:00+06:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
@@ -24,7 +31,7 @@
   
   <url>
     <loc>http://sanjayts.net/</loc>
-    <lastmod>2017-09-02T22:00:00+06:00</lastmod>
+    <lastmod>2017-09-22T12:00:00+06:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
@@ -36,8 +43,15 @@
   </url>
   
   <url>
+    <loc>http://sanjayts.net/tags/linux/</loc>
+    <lastmod>2017-09-22T12:00:00+06:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://sanjayts.net/categories/programming/</loc>
-    <lastmod>2017-09-02T22:00:00+06:00</lastmod>
+    <lastmod>2017-09-22T12:00:00+06:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0</priority>
   </url>
@@ -57,8 +71,15 @@
   </url>
   
   <url>
+    <loc>http://sanjayts.net/tags/screen/</loc>
+    <lastmod>2017-09-22T12:00:00+06:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://sanjayts.net/tags/</loc>
-    <lastmod>2017-09-02T22:00:00+06:00</lastmod>
+    <lastmod>2017-09-22T12:00:00+06:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0</priority>
   </url>
