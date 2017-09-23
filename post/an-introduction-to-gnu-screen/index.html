@@ -40,7 +40,7 @@ Why use a terminal multiplexer? Some of the most obvious advantages being:
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 
-<link href="/dist/even.min.css?v=2.5.0" rel="stylesheet">
+<link href="/dist/even.min.css?v=2.6.1" rel="stylesheet">
 <link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
 
 <meta property="og:title" content="An Introduction To GNU Screen" />
@@ -82,9 +82,13 @@ Why use a terminal multiplexer? Some of the most obvious advantages being:
 Why use a terminal multiplexer? Some of the most obvious advantages being:
  Ability to have a saved session for your work Cutting down the number of terminal windows you have to open  Let&rsquo;s discuss a usecase wherein you are logged on to your Edge/Gateway node and would like to monitor your Spark jobs, your HBase service and at the same time query Impala tables."/>
 
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
 <!--[if lt IE 9]>
-  <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
 <![endif]-->
 
 </head>
@@ -103,8 +107,6 @@ Why use a terminal multiplexer? Some of the most obvious advantages being:
   <ul class="mobile-menu-list">
     <a href="/post/">
         <li class="mobile-menu-item">Blog</li>
-      </a><a href="/">
-        <li class="mobile-menu-item">Home</li>
       </a><a href="/tags/">
         <li class="mobile-menu-item">Tags</li>
       </a><a href="/categories/">
@@ -125,8 +127,6 @@ Why use a terminal multiplexer? Some of the most obvious advantages being:
     <li class="menu-item">
         <a class="menu-item-link" href="/post/">Blog</a>
       </li><li class="menu-item">
-        <a class="menu-item-link" href="/">Home</a>
-      </li><li class="menu-item">
         <a class="menu-item-link" href="/tags/">Tags</a>
       </li><li class="menu-item">
         <a class="menu-item-link" href="/categories/">Categories</a>
@@ -146,36 +146,17 @@ Why use a terminal multiplexer? Some of the most obvious advantages being:
       <h1 class="post-title">An Introduction To GNU Screen</h1>
 
       <div class="post-meta">
-        <span class="post-time">
-          2017-09-22
-        </span>
+        <span class="post-time"> 2017-09-22 </span>
         <div class="post-category">
             <a href="/categories/programming/">programming</a>
           </div>
+        <span class="more-meta"> 627 words </span>
+        <span class="more-meta"> 3 minute read </span>
       </div>
     </header>
 
     
     
-<div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">Contents</h2>
-  <div class="post-toc-content">
-      <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#why-use-a-terminal-multiplexer">Why use a terminal multiplexer?</a></li>
-<li><a href="#tmux-and-screen">tmux and screen</a></li>
-<li><a href="#basic-screen-commands">Basic screen commands</a></li>
-<li><a href="#recommended-reading">Recommended Reading</a></li>
-</ul></li>
-</ul></li>
-</ul>
-</nav>
-  </div>
-</div>
 
     
     <div class="post-content">
@@ -245,21 +226,17 @@ Why use a terminal multiplexer? Some of the most obvious advantages being:
     
 <div class="post-copyright">
   <p class="copyright-item">
-    <span class="item-title">Sanjay: </span>
-    <span>Sanjay</span>
+    <span class="item-title">Author</span>
+    <span class="item-content">Sanjay</span>
   </p>
   <p class="copyright-item">
-    <span class="item-title">LastMod: </span>
-    2017-09-22
-  </p>
-  <p class="copyright-item">
-    <span class="item-title">Link: </span>
-    <a href="http://sanjayts.net/post/an-introduction-to-gnu-screen/">http://sanjayts.net/post/an-introduction-to-gnu-screen/</a>
+    <span class="item-title">LastMod</span>
+    <span class="item-content">2017-09-22</span>
   </p>
   
-  <p class="copyright-item license">
-    <span class="item-title">License: </span>
-    <a rel="license" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>
+  <p class="copyright-item">
+    <span class="item-title">License</span>
+    <span class="item-content"><a rel="license" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a></span>
   </p>
 </div>
 
@@ -311,10 +288,10 @@ Why use a terminal multiplexer? Some of the most obvious advantages being:
 
     <footer id="footer" class="footer">
       <div class="social-links">
-        <a href="mailto:me%20[at]%20sanjayts%20[dot]%20net" class="iconfont icon-email" title="email"></a>
-        <a href="https://stackoverflow.com/users/193906/sanjay-t-sharma" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
-        <a href="https://twitter.com/sanjay_ts" class="iconfont icon-twitter" title="twitter"></a>
-        <a href="https://github.com/sanjayts" class="iconfont icon-github" title="github"></a>
+      <a href="me%20[at]%20sanjayts%20[dot]%20net" class="iconfont icon-email" title="email"></a>
+      <a href="https://stackoverflow.com/users/193906/sanjay-t-sharma" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="https://twitter.com/sanjay_ts" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="https://github.com/sanjayts" class="iconfont icon-github" title="github"></a>
   <a href="http://sanjayts.net/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
@@ -350,7 +327,7 @@ Why use a terminal multiplexer? Some of the most obvious advantages being:
 <script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
   <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
   <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
-<script type="text/javascript" src="/dist/even.min.js?v=2.5.0"></script>
+<script type="text/javascript" src="/dist/even.min.js?v=2.6.1"></script>
   <script type="text/javascript">
     window.MathJax = {
       showProcessingMessages: false,
