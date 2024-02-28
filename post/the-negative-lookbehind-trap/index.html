@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Sanjay" /><meta name="description" content="A request was made in this Daniweb thread to split a string based on punctuations and whitespaces but with a twist. The splitting should make exceptions/allowances for special cases.
+<meta name="author" content="olOwOlo" /><meta name="description" content="A request was made in this Daniweb thread to split a string based on punctuations and whitespaces but with a twist. The splitting should make exceptions/allowances for special cases.
 For e.g. let&amp;rsquo;s say we are splitting on . (the dot character). Our splitting should keep titles like Mrs. and Mr. intact. What does this mean? Let&amp;rsquo;s have a look at it with an example (for those wondering, the code snippets are in Python programming language):" />
 
 
@@ -24,7 +24,7 @@ For e.g. let&amp;rsquo;s say we are splitting on . (the dot character). Our spli
 
 
 
-<meta name="generator" content="Hugo 0.53 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.123.4 with theme even" />
 
 
 <link rel="canonical" href="http://sanjayts.net/post/the-negative-lookbehind-trap/" />
@@ -35,7 +35,8 @@ For e.g. let&amp;rsquo;s say we are splitting on . (the dot character). Our spli
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 
-<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 <link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
 
 
@@ -43,23 +44,16 @@ For e.g. let&amp;rsquo;s say we are splitting on . (the dot character). Our spli
 <meta property="og:description" content="A request was made in this Daniweb thread to split a string based on punctuations and whitespaces but with a twist. The splitting should make exceptions/allowances for special cases.
 For e.g. let&rsquo;s say we are splitting on . (the dot character). Our splitting should keep titles like Mrs. and Mr. intact. What does this mean? Let&rsquo;s have a look at it with an example (for those wondering, the code snippets are in Python programming language):" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://sanjayts.net/post/the-negative-lookbehind-trap/" /><meta property="article:published_time" content="2017-09-02T12:00:00&#43;06:00"/>
-<meta property="article:modified_time" content="2017-09-02T22:00:00&#43;06:00"/>
+<meta property="og:url" content="http://sanjayts.net/post/the-negative-lookbehind-trap/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2017-09-02T12:00:00+06:00" />
+<meta property="article:modified_time" content="2017-09-02T22:00:00+06:00" />
 
 <meta itemprop="name" content="The Negative look-behind trap -- regex">
 <meta itemprop="description" content="A request was made in this Daniweb thread to split a string based on punctuations and whitespaces but with a twist. The splitting should make exceptions/allowances for special cases.
-For e.g. let&rsquo;s say we are splitting on . (the dot character). Our splitting should keep titles like Mrs. and Mr. intact. What does this mean? Let&rsquo;s have a look at it with an example (for those wondering, the code snippets are in Python programming language):">
-
-
-<meta itemprop="datePublished" content="2017-09-02T12:00:00&#43;06:00" />
-<meta itemprop="dateModified" content="2017-09-02T22:00:00&#43;06:00" />
+For e.g. let&rsquo;s say we are splitting on . (the dot character). Our splitting should keep titles like Mrs. and Mr. intact. What does this mean? Let&rsquo;s have a look at it with an example (for those wondering, the code snippets are in Python programming language):"><meta itemprop="datePublished" content="2017-09-02T12:00:00+06:00" />
+<meta itemprop="dateModified" content="2017-09-02T22:00:00+06:00" />
 <meta itemprop="wordCount" content="810">
-
-
-
-<meta itemprop="keywords" content="regex,python," />
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="The Negative look-behind trap -- regex"/>
+<meta itemprop="keywords" content="regex,python," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="The Negative look-behind trap -- regex"/>
 <meta name="twitter:description" content="A request was made in this Daniweb thread to split a string based on punctuations and whitespaces but with a twist. The splitting should make exceptions/allowances for special cases.
 For e.g. let&rsquo;s say we are splitting on . (the dot character). Our splitting should keep titles like Mrs. and Mr. intact. What does this mean? Let&rsquo;s have a look at it with an example (for those wondering, the code snippets are in Python programming language):"/>
 
@@ -96,30 +90,36 @@ For e.g. let&rsquo;s say we are splitting on . (the dot character). Our splittin
         <li class="mobile-menu-item">About</li>
       </a>
   </ul>
+
+  
+
+
 </nav>
+
   <div class="container" id="mobile-panel">
     <header id="header" class="header">
         <div class="logo-wrapper">
   <a href="/" class="logo">Ramblings</a>
 </div>
 
+
+
+
+
 <nav class="site-navbar">
   <ul id="menu" class="menu">
     <li class="menu-item">
         <a class="menu-item-link" href="/post/">Blog</a>
-        <span>&nbsp;|</span>
       </li><li class="menu-item">
         <a class="menu-item-link" href="/tags/">Tags</a>
-        <span>&nbsp;|</span>
       </li><li class="menu-item">
         <a class="menu-item-link" href="/categories/">Categories</a>
-        <span>&nbsp;|</span>
       </li><li class="menu-item">
         <a class="menu-item-link" href="/about/">About</a>
-        <span>&nbsp;|</span>
       </li>
   </ul>
 </nav>
+
     </header>
 
     <main id="main" class="main">
@@ -143,14 +143,12 @@ For e.g. let&rsquo;s say we are splitting on . (the dot character). Our splittin
 
     
     <div class="post-content">
-      <hr />
-
+      <hr>
 <p>A request was made in this <a href="http://www.daniweb.com/software-development/java/threads/331201/java-split-text-by-spaces-and-punctuation#post1798456">Daniweb thread</a> to split a string based on punctuations and whitespaces but with a twist. The splitting should make exceptions/allowances for special cases.</p>
-
 <p>For e.g. let&rsquo;s say we are splitting on <code>.</code> (the dot character). Our splitting should keep titles like <code>Mrs.</code> and <code>Mr.</code> intact. What does this mean? Let&rsquo;s have a look at it with an example (for those wondering, the code snippets are in Python programming language):</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -161,80 +159,79 @@ For e.g. let&rsquo;s say we are splitting on . (the dot character). Our splittin
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Regular splitting based on punctuation (we need the backslash before the dot</span>
-<span class="c1"># because we need to make the regex engine aware that we are looking for a literal</span>
-<span class="c1"># dot and not the regex metacharacter which matches anything.</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\.&#39;</span><span class="p">,</span> <span class="s1">&#39;a.b.c.Mr.d.Mrs.i.p&#39;</span><span class="p">)</span>
-<span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;Mr&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;Mrs&#39;</span><span class="p">,</span> <span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="s1">&#39;p&#39;</span><span class="p">]</span>
-
-<span class="c1"># Special splitting</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;WE_NEED_SOMETHING_HERE&#39;</span><span class="p">,</span> <span class="s1">&#39;a.b.c.Mr.d.Mrs.i.p&#39;</span><span class="p">)</span>
-<span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;Mr.&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;Mrs.&#39;</span><span class="p">,</span> <span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="s1">&#39;p&#39;</span><span class="p">]</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Regular splitting based on punctuation (we need the backslash before the dot</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># because we need to make the regex engine aware that we are looking for a literal</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># dot and not the regex metacharacter which matches anything.</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\.&#39;</span><span class="p">,</span> <span class="s1">&#39;a.b.c.Mr.d.Mrs.i.p&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;Mr&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;Mrs&#39;</span><span class="p">,</span> <span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="s1">&#39;p&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Special splitting</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;WE_NEED_SOMETHING_HERE&#39;</span><span class="p">,</span> <span class="s1">&#39;a.b.c.Mr.d.Mrs.i.p&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;Mr.&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;Mrs.&#39;</span><span class="p">,</span> <span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="s1">&#39;p&#39;</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div>
-<p>As you can see from the example above, we do split the string based on the dot character but skip the splitting in case of titles like <code>Mr.</code> and <code>Mrs.</code>. How would we go about doing it with regular expressions? Well, <a href="http://www.regular-expressions.info/lookaround.html">lookaround assertions</a> to the rescue, or something like that. ;) The most obvious fix here would be to just add negative lookbehinds and be done with it, right?</p>
+</div><p>As you can see from the example above, we do split the string based on the dot character but skip the splitting in case of titles like <code>Mr.</code> and <code>Mrs.</code>. How would we go about doing it with regular expressions? Well, <a href="http://www.regular-expressions.info/lookaround.html">lookaround assertions</a> to the rescue, or something like that. ;) The most obvious fix here would be to just add negative lookbehinds and be done with it, right?</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Splitting based on lookbehind</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(?&lt;!Mr)\.&#39;</span><span class="p">,</span> <span class="s1">&#39;a.b.c.Mr.d.Mrs.i.p&#39;</span><span class="p">)</span>
-<span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;Mr.d&#39;</span><span class="p">,</span> <span class="s1">&#39;Mrs&#39;</span><span class="p">,</span> <span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="s1">&#39;p&#39;</span><span class="p">]</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Splitting based on lookbehind</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(?&lt;!Mr)\.&#39;</span><span class="p">,</span> <span class="s1">&#39;a.b.c.Mr.d.Mrs.i.p&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;Mr.d&#39;</span><span class="p">,</span> <span class="s1">&#39;Mrs&#39;</span><span class="p">,</span> <span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="s1">&#39;p&#39;</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div>
-<p>Whoa, we are looking good here. For those who haven&rsquo;t noticed, we skipped the <code>.</code> following <code>Mr</code> and hence <code>Mr.</code> was included in the split result. If it makes any easier, compare this output with the output of example one, it should make things clear. So, one more lookbehind and we should be golden. Let&rsquo;s try that:</p>
+</div><p>Whoa, we are looking good here. For those who haven&rsquo;t noticed, we skipped the <code>.</code> following <code>Mr</code> and hence <code>Mr.</code> was included in the split result. If it makes any easier, compare this output with the output of example one, it should make things clear. So, one more lookbehind and we should be golden. Let&rsquo;s try that:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Splitting based on lookbehind</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(?&lt;!Mr)\.|(?&lt;!Mrs)\.&#39;</span><span class="p">,</span> <span class="s1">&#39;a.b.c.Mr.d.Mrs.i.p&#39;</span><span class="p">)</span>
-<span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;Mr&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;Mrs&#39;</span><span class="p">,</span> <span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="s1">&#39;p&#39;</span><span class="p">]</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Splitting based on lookbehind</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(?&lt;!Mr)\.|(?&lt;!Mrs)\.&#39;</span><span class="p">,</span> <span class="s1">&#39;a.b.c.Mr.d.Mrs.i.p&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;Mr&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;Mrs&#39;</span><span class="p">,</span> <span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="s1">&#39;p&#39;</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div>
-<p>Huh, what happened? Here&rsquo;s what happened:</p>
-
+</div><p>Huh, what happened? Here&rsquo;s what happened:</p>
 <ul>
-<li>You ask the regex engine to split based on the alternations. So our regex literally reads as &ldquo;try to split based on dot unless it is followed by the literal <code>Mr</code> <strong>OR</strong> try to split based on dot unless it is followed by <code>Mrs</code>&ldquo;</li>
+<li>You ask the regex engine to split based on the alternations. So our regex literally reads as &ldquo;try to split based on dot unless it is followed by the literal <code>Mr</code> <strong>OR</strong> try to split based on dot unless it is followed by <code>Mrs</code>&rdquo;</li>
 <li>The splitting of first three dots is as expected i.e. <code>a.b.c.REM</code> results in the parts as <code>a</code>, <code>b</code>, <code>c</code> and the <code>REMAINING STRING</code>. This is because the negative lookbehind fails for this section of the string and hence normal splitting based on dot occurs.</li>
 <li>Now comes the tricky part; the regex engine is now positioned on the dot after <code>Mr</code>. It does a negative lookbehind assertion and confirms that we should ignore the dot if it is preceded by <code>Mr</code>. <em>But</em> it doesn&rsquo;t end here. We have an alternation in our regex.</li>
 <li>Now that the first alternation fails, the regex engine moves on to test the next altenation, which is <code>(?&lt;!Mrs)\.</code>. This negative lookbehind assertion is not satisfied because we are right now at the dot character which is preceded by <code>Mr</code> but we are checking for <code>Mrs</code>. So basically, the second alternation test passes and the dot character is used for splitting the string.</li>
 <li>This is totally unexpected behaviour but a side-effect of chaining negative lookbehinds in an alternation. Think of it as an &ldquo;OR&rdquo; test used in programming languages. If <em>any one</em> of the condition is satisfied, the check succeeds which is counter-productive to our case here.</li>
 </ul>
-
 <p>So, what&rsquo;s the solution? The solution is to ensure that for baking an exception in your regex (i.e. split based on dot char only if it isn&rsquo;t preceded by <code>Mr</code> or <code>Mrs</code>) you club the similar negative lookbehinds instead of keeping them separate. A logical solution here would be:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(?&lt;!Mr|Mrs)\.&#39;</span><span class="p">,</span> <span class="s1">&#39;a.b.c.Mr.d.Mrs.i.p&#39;</span><span class="p">)</span>
-<span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;Mr&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;Mrs&#39;</span><span class="p">,</span> <span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="s1">&#39;p&#39;</span><span class="p">]</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(?&lt;!Mr|Mrs)\.&#39;</span><span class="p">,</span> <span class="s1">&#39;a.b.c.Mr.d.Mrs.i.p&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;Mr&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;Mrs&#39;</span><span class="p">,</span> <span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="s1">&#39;p&#39;</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div>
-<p>Alas, it doesn&rsquo;t work with Python. The error which greets you is: &ldquo;sre_constants.error: look-behind requires fixed-width pattern&rdquo;. What is this trying to say to us? It means that the pattern used in lookbehind needs to be fixed width. So basically no <code>+</code> or <code>*</code>. In our case, we have an alternation with one pattern having length as 2 and the other pattern having length as 3 which causes the failure. But fear not, because we have a simple workaround which can help us get the correct value. Note that we don&rsquo;t care what precedes <code>Mr</code> as long as it is followed by the dot char. We can tweak/modify the regex a bit to make it fixed length (i.e. length 3) by adding a dot metacharacter in the mix. Here is something which should work:</p>
+</div><p>Alas, it doesn&rsquo;t work with Python. The error which greets you is: &ldquo;sre_constants.error: look-behind requires fixed-width pattern&rdquo;. What is this trying to say to us? It means that the pattern used in lookbehind needs to be fixed width. So basically no <code>+</code> or <code>*</code>. In our case, we have an alternation with one pattern having length as 2 and the other pattern having length as 3 which causes the failure. But fear not, because we have a simple workaround which can help us get the correct value. Note that we don&rsquo;t care what precedes <code>Mr</code> as long as it is followed by the dot char. We can tweak/modify the regex a bit to make it fixed length (i.e. length 3) by adding a dot metacharacter in the mix. Here is something which should work:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(?&lt;!.Mr|Mrs)\.&#39;</span><span class="p">,</span> <span class="s1">&#39;a.b.c.Mr.d.Mrs.i.p&#39;</span><span class="p">)</span>
-<span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;Mr.d&#39;</span><span class="p">,</span> <span class="s1">&#39;Mrs.i&#39;</span><span class="p">,</span> <span class="s1">&#39;p&#39;</span><span class="p">]</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(?&lt;!.Mr|Mrs)\.&#39;</span><span class="p">,</span> <span class="s1">&#39;a.b.c.Mr.d.Mrs.i.p&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;Mr.d&#39;</span><span class="p">,</span> <span class="s1">&#39;Mrs.i&#39;</span><span class="p">,</span> <span class="s1">&#39;p&#39;</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div>
-<p>For those who didn&rsquo;t notice, I added a <code>.</code> just before the <code>Mr</code> in the alternation. Here is hoping this piece of write-up might help you in case you are stuck with a similar problem! :)</p>
+</div><p>For those who didn&rsquo;t notice, I added a <code>.</code> just before the <code>Mr</code> in the alternation. Here is hoping this piece of write-up might help you in case you are stuck with a similar problem! :)</p>
 
     </div>
 
-    <footer class="post-footer">
+    
+<footer class="post-footer">
       <div class="post-tags">
           <a href="/tags/regex/">regex</a>
           <a href="/tags/python/">python</a>
@@ -265,6 +262,10 @@ For e.g. let&rsquo;s say we are splitting on . (the dot character). Our splittin
     </script>
     <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
+  
+
+  
+
       </div>
     </main>
 
@@ -292,13 +293,10 @@ For e.g. let&rsquo;s say we are splitting on . (the dot character). Our splittin
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2019
-    <span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">Sanjay</span>
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span>olOwOlo</span>
   </span>
 </div>
+
     </footer>
 
     <div class="back-to-top" id="back-to-top">
@@ -308,17 +306,20 @@ For e.g. let&rsquo;s say we are splitting on . (the dot character). Our splittin
   <script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
   <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
   <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
-<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
   <script type="text/javascript">
     window.MathJax = {
-      showProcessingMessages: false,
-      messageStyle: 'none'
+      tex: {
+        }
     };
   </script>
-  <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js" integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin="anonymous"></script>
 
 
-<script type="application/javascript">
+<script>
 var doNotTrack = false;
 if (!doNotTrack) {
 	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;

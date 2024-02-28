@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Ramblings</title>
@@ -6,18 +6,14 @@
     <description>Recent content in Categories on Ramblings</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    
-	<atom:link href="http://sanjayts.net/categories/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Fri, 22 Sep 2017 12:00:00 +0600</lastBuildDate>
+    <atom:link href="http://sanjayts.net/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>programming</title>
+      <title>Programming</title>
       <link>http://sanjayts.net/categories/programming/</link>
       <pubDate>Fri, 22 Sep 2017 12:00:00 +0600</pubDate>
-      
       <guid>http://sanjayts.net/categories/programming/</guid>
       <description></description>
     </item>
-    
   </channel>
 </rss>
