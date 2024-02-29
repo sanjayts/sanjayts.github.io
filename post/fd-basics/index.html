@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Seaching For Fun With fd - Ramblings</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="olOwOlo" /><meta name="description" content="Exploring the CLI tool fd" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.123.4 with theme even" />
+
+
+<link rel="canonical" href="http://localhost:1313/post/fd-basics/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+<meta property="og:title" content="Seaching For Fun With fd" />
+<meta property="og:description" content="Exploring the CLI tool fd" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/post/fd-basics/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2024-02-28T21:15:02+00:00" />
+<meta property="article:modified_time" content="2024-02-28T21:15:02+00:00" />
+
+<meta itemprop="name" content="Seaching For Fun With fd">
+<meta itemprop="description" content="Exploring the CLI tool fd"><meta itemprop="datePublished" content="2024-02-28T21:15:02+00:00" />
+<meta itemprop="dateModified" content="2024-02-28T21:15:02+00:00" />
+<meta itemprop="wordCount" content="815">
+<meta itemprop="keywords" content="cli-tool,fd," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Seaching For Fun With fd"/>
+<meta name="twitter:description" content="Exploring the CLI tool fd"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Ramblings</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/post/">
+        <li class="mobile-menu-item">Blog</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Ramblings</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/post/">Blog</a>
+        <span>&nbsp;|</span>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+        <span>&nbsp;|</span>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+        <span>&nbsp;|</span>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+        <span>&nbsp;|</span>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Seaching For Fun With fd</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> Wednesday, February 28, 2024 </span>
+        <div class="post-category">
+            <a href="/categories/programming/"> programming </a>
+            </div>
+          <span class="more-meta"> 815 words </span>
+          <span class="more-meta"> 4 mins read </span>
+        
+      </div>
+    </header>
+
+    
+    <div class="post-content">
+      <p><code>fd</code> is a blazing fast (I know, I know 😉) replacement for the in-built <code>find</code> command. I&rsquo;ve been having a lot of fun incorporating it as part of my workflow so figured out I should at least blog about its basics.</p>
+<p>The <a href="https://github.com/sharkdp/fd?tab=readme-ov-file">official readme</a> details out all the possible flags/options for using the tool but I&rsquo;ve reiterated them here for my personal quick reference, to internalise the syntax and with the hope that someone else might find it useful.</p>
+<h1 id="overview">Overview</h1>
+<p><code>fd</code> usage follows the below syntax (kind-of) with all arguments as optional:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">fd one-or-more-flags <span class="s1">&#39;search-pattern&#39;</span> target-directory
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>fd</code> without any arguments recursively lists out all the contents of the given directory except for:</p>
+<ol>
+<li>All patterns ignored by the <code>.gitignore</code> file (assuming it&rsquo;s a <code>git</code> repo and <code>.gitignore</code> exists)</li>
+<li>All hidden entries</li>
+</ol>
+<p>The above exclusion applies by default to all cases <em>but</em> it&rsquo;s pretty simple to get around it by using flags:</p>
+<ol>
+<li>Want to include hidden files? Use <code>fd -H</code></li>
+<li>Want to ignore <code>.gitignore</code> exclusions? Use  <code>fd -I</code></li>
+<li>Want to enable both of these together? Just use <code>fd -u</code></li>
+</ol>
+<h1 id="pattern">Pattern</h1>
+<p><code>fd pattern</code> recursively lists all filesystem entries matching the given <code>pattern</code>.  By default, the pattern is treated as a regex string and the syntax is well documented in the <a href="https://docs.rs/regex/latest/regex/index.html#syntax">regex</a> crate docs. Attempting to use our usual glob patterns fails in <code>fd</code> with an error. Thankfully, we have the <code>-g</code> flag to enable glob search.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># recursively search for all files containing the word &#39;controller&#39;</span>
+</span></span><span class="line"><span class="cl">fd -g <span class="s1">&#39;*controller*&#39;</span> src/java
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>It&rsquo;s worth that the pattern always comes first so if we want to list out all the entries of a sub-directory, we&rsquo;ll have to use a catch-all <code>.</code> pattern and then the target directory:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">fd . sub_dir
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="extension">Extension</h1>
+<p>The bread-and-butter of all find-like utilities is finding files with a given extension. This can be achieved using our trusted old <code>*.md</code> glob pattern for finding all markdown files. But a more &ldquo;fd-like&rdquo; approach would be to use the in-built <code>-e</code> flag, like, <code>fd -e md</code> and these can of course be chained (so <code>fd -e md -e rs</code> is totally valid). Plus I&rsquo;m pretty sure there are some corner cases out there wherein our glob pattern for file extensions won&rsquo;t work.</p>
+<h1 id="path-search">Path Search</h1>
+<p>In some scenarios, you might want to search across path names instead of file names starting with a given root directory. One such scenario would be a bulk image downloader utility which downloads all images for a given website per day to a certain <code>output_dir</code>. Assuming the directory names are of the format <code>out_yyyymmdd</code> we can use the path search capabilities of <code>fd</code> to find all <code>jpg</code> images for a given month and date (let&rsquo;s say 29th of Feb) across multiple years using the below command:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">fd -p -e jpg -e jpeg <span class="s1">&#39;0229&#39;</span> output_dir
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="attribute-filters">Attribute Filters</h1>
+<p><code>fd</code>, just like <code>find</code> allows us to filter on file attributes like <code>type</code>, <code>size</code> &amp; <code>owner</code>. For e.g. if we want to list the details all files with size greater than <code>2kb</code> owned by <code>sanjayts</code> we can use:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># -tf implies type &#39;file&#39;; read man page for other options</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># --size +2k implies size greater than 2k</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># --size -2k implies file size less than 2k</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># --size 2k implies file exact file size of 2k</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -o sanjayts implies only files with &#39;sanjayts&#39; as the owner</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -l provides a detailed listing with file-masks, owners, size etc. just like ls -l</span>
+</span></span><span class="line"><span class="cl">fd -tf --size +2k -o sanjayts -l
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Another advantage of <code>fd</code> over <code>find</code> is the support of user-friendly duration strings and dates as opposed to messing around with <code>-mmin</code>, <code>-mtime</code>, <code>-newermt</code> etc. For e.g. if we want to list out all files within the <code>src</code> directory modified on the 5th of Jan 2024, we can use:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">fd --newer <span class="s1">&#39;2024-1-5&#39;</span> --older <span class="s1">&#39;2024-1-6&#39;</span> -l . src
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="case-sensitivity">Case Sensitivity</h1>
+<p>You might have noticed that we haven&rsquo;t given any care to the case sensitivity of patterns till now. This is because <code>fd</code> is awesome and uses smart case matching by default. What this means is that matches are case insensitive by default but switches to a case sensitive match when it encounters any upper-case character as part of the pattern. You can of course use the <code>-i</code> and <code>-s</code> flags for forcing a case insensitive or case sensitive match respectively.</p>
+<p>This feature is a positive data-point for user-friendly defaults in modern tools.</p>
+<h1 id="further-reading">Further reading</h1>
+<p>This blog post covers only a fraction of what <code>fd</code> is capable of. I have omitted the <code>-x</code> and <code>-X</code> flags which allow us to execute a command for each or all the matching filesystem entities. Plus I haven&rsquo;t covered file deletion since I don&rsquo;t have any use of that feature yet. I would also whole-heartedly recommend reading the detailed man page by invoking <code>fd --help</code> since it covers each flag in much more detail.</p>
+
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/cli-tool/">cli-tool</a>
+          <a href="/tags/fd/">fd</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/an-introduction-to-gnu-screen/">
+            <span class="next-text nav-default">An Introduction To GNU Screen</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="me%20[at]%20sanjayts%20[dot]%20net" class="iconfont icon-email" title="email"></a>
+      <a href="https://stackoverflow.com/users/193906/sanjay-t-sharma" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="https://twitter.com/sanjay_ts" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="https://github.com/sanjayts" class="iconfont icon-github" title="github"></a>
+  <a href="http://localhost:1313/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span>olOwOlo</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

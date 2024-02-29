@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Fd on Ramblings</title>
+    <link>http://localhost:1313/tags/fd/</link>
+    <description>Recent content in Fd on Ramblings</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 28 Feb 2024 21:15:02 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/fd/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Seaching For Fun With fd</title>
+      <link>http://localhost:1313/post/fd-basics/</link>
+      <pubDate>Wed, 28 Feb 2024 21:15:02 +0000</pubDate>
+      <guid>http://localhost:1313/post/fd-basics/</guid>
+      <description>fd is a blazing fast (I know, I know 😉) replacement for the in-built find command. I&amp;rsquo;ve been having a lot of fun incorporating it as part of my workflow so figured out I should at least blog about its basics.&#xA;The official readme details out all the possible flags/options for using the tool but I&amp;rsquo;ve reiterated them here for my personal quick reference, to internalise the syntax and with the hope that someone else might find it useful.</description>
+    </item>
+  </channel>
+</rss>
